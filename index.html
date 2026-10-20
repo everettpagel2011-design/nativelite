@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Masked title to bypass automatic GoGuardian trigger bots -->
     <title>Grade 8 Mathematics Unified Curriculum Sync Portal</title>
     <style>
         :root {
@@ -21,12 +20,10 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
         }
 
-        /* Top Navigation Dashboard Console */
         nav {
-            background-color: rgba(18, 20, 32, 0.7);
+            background-color: rgba(18, 20, 32, 0.8);
             backdrop-filter: blur(12px);
             padding: 15px 40px;
             display: flex;
@@ -41,69 +38,29 @@
         .logo {
             font-size: 20px;
             font-weight: 800;
-            letter-spacing: -0.5px;
             background: linear-gradient(90deg, #5865f2, #8592ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* High-Performance Real-Time Filter Bar */
-        .search-container {
-            position: relative;
-            width: 350px;
-        }
-
         .search-bar {
-            width: 100%;
+            width: 320px;
             padding: 10px 16px;
             background-color: #1a1d2e;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 8px;
             color: var(--text-primary);
-            font-size: 14px;
             outline: none;
-            transition: all 0.2s ease;
         }
 
-        .search-bar:focus {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
-        }
+        .search-bar:focus { border-color: var(--accent-glow); }
 
-        /* Main Workspace Content Layout */
         .main-container {
             max-width: 1400px;
             margin: 30px auto;
             padding: 0 40px;
         }
 
-        /* Premium NitroPay/Playwire Advertisement Asset Allocation */
-        .ad-banner-placement {
-            background-color: var(--bg-card);
-            width: 100%;
-            max-width: 728px;
-            height: 90px;
-            margin: 0 auto 40px auto;
-            border-radius: 8px;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* High-End Streaming Catalog Grid */
         .streaming-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -114,149 +71,144 @@
             background-color: var(--bg-card);
             border-radius: 12px;
             overflow: hidden;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s ease;
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.03);
-            position: relative;
         }
 
         .game-card:hover {
-            transform: translateY(-5px);
-            background-color: var(--bg-card-hover);
+            transform: translateY(-4px);
             border-color: var(--accent-glow);
-            box-shadow: 0 12px 24px rgba(88, 101, 242, 0.15);
+            background-color: var(--bg-card-hover);
         }
 
         .thumbnail-viewport {
             width: 100%;
-            height: 120px;
+            height: 110px;
             background: linear-gradient(135deg, #1e2238, #121420);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
-            transition: transform 0.2s ease;
         }
 
-        .game-card:hover .thumbnail-viewport {
-            transform: scale(1.05);
+        .game-info { padding: 12px; }
+        .game-title { font-size: 14px; font-weight: 600; margin: 0; }
+        .game-category { font-size: 11px; color: var(--text-secondary); margin: 4px 0 0 0; }
+
+        /* The Automated Fullscreen Game Room Overlay */
+        #gameOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 1000;
         }
 
-        .game-info {
-            padding: 12px;
-            background-color: rgba(0, 0, 0, 0.2);
+        #gameFrame {
+            width: 100%;
+            height: calc(100% - 50px);
+            border: none;
         }
 
-        .game-title {
-            font-size: 14px;
+        .close-bar {
+            height: 50px;
+            background-color: #121420;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+
+        .close-btn {
+            background-color: #5865f2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
             font-weight: 600;
-            color: var(--text-primary);
-            margin: 0 0 4px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .game-category {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin: 0;
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">math8.pro // core</div>
-        <div class="search-container">
-            <input type="text" class="search-bar" id="gameSearch" placeholder="Search streaming catalog..." autocomplete="off">
-        </div>
+        <div class="logo">math8.pro // hub</div>
+        <input type="text" class="search-bar" id="search" placeholder="Search catalog modules...">
     </nav>
 
     <div class="main-container">
-        
-        <!-- Premium Global Advertisement Slot Pipeline -->
-        <div class="ad-banner-placement">
-            [PREMIUM ADVERTISEMENT CONSOLE SLOT]
+        <div class="streaming-grid" id="grid"></div>
+    </div>
+
+    <!-- Hidden Game Player Area Box -->
+    <div id="gameOverlay">
+        <div class="close-bar">
+            <span id="currentPlayingTitle" style="font-weight:600;">Loading Assignment Module...</span>
+            <button class="close-btn" onclick="closeGame()">Back to Library</button>
         </div>
-
-        <p class="section-title">Trending Catalog Modules</p>
-
-        <!-- Streaming Arcade Node Catalog Matrix -->
-        <div class="streaming-grid" id="arcadeGrid">
-            
-            <div class="game-card" onclick="launchModule('1v1')">
-                <div class="thumbnail-viewport">🎯</div>
-                <div class="game-info">
-                    <p class="game-title">1v1.LOL</p>
-                    <p class="game-category">Esports / Action</p>
-                </div>
-            </div>
-
-            <div class="game-card" onclick="launchModule('retro-bowl')">
-                <div class="thumbnail-viewport">🏈</div>
-                <div class="game-info">
-                    <p class="game-title">Retro Bowl Classic</p>
-                    <p class="game-category">Sports Sim</p>
-                </div>
-            </div>
-
-            <div class="game-card" onclick="launchModule('slope')">
-                <div class="thumbnail-viewport">🟢</div>
-                <div class="game-info">
-                    <p class="game-title">Slope Engine</p>
-                    <p class="game-category">Physics Arcade</p>
-                </div>
-            </div>
-
-            <div class="game-card" onclick="launchModule('bitlife')">
-                <div class="thumbnail-viewport">💼</div>
-                <div class="game-info">
-                    <p class="game-title">BitLife Sim</p>
-                    <p class="game-category">Life Simulator</p>
-                </div>
-            </div>
-
-            <div class="game-card" onclick="launchModule('2048')">
-                <div class="thumbnail-viewport">🔢</div>
-                <div class="game-info">
-                    <p class="game-title">2048 Engine</p>
-                    <p class="game-category">Logic Core</p>
-                </div>
-            </div>
-
-            <div class="game-card" onclick="launchModule">
-                <div class="thumbnail-viewport">🧗</div>
-                <div class="game-info">
-                    <p class="game-title">Getting Over It</p>
-                    <p class="game-category">Physics Rage</p>
-                </div>
-            </div>
-
-        </div>
+        <iframe id="gameFrame" src=""></iframe>
     </div>
 
     <script>
-        // Real-Time UI Engine Search Filter Functionality
-        const searchInput = document.getElementById('gameSearch');
-        const cards = document.querySelectorAll('.game-card');
+        // Core Database Inventory (Uses public unblocked CDN channels)
+        const gameDatabase = [
+            { title: "1v1.LOL", cat: "Action Shooter", icon: "🎯", url: "https://vercel.app" },
+            { title: "Retro Bowl", cat: "Sports Sim", icon: "🏈", url: "https://vercel.app" },
+            { title: "Slope", cat: "Physics Core", icon: "🟢", url: "https://vercel.app" },
+            { title: "Subway Surfers", cat: "Endless Runner", icon: "🏃", url: "https://vercel.app" },
+            { title: "Snow Rider 3D", cat: "Racing Sim", icon: "🛷", url: "https://vercel.app" },
+            { title: "Drift Boss", cat: "Arcade Driving", icon: "🚗", url: "https://vercel.app" },
+            { title: "Run 3", cat: "Space Runner", icon: "🪐", url: "https://vercel.app" },
+            { title: "Roblox 2D", cat: "Platformer", icon: "🧱", url: "https://vercel.app" },
+            { title: "Basketball Stars", cat: "Sports Sim", icon: "🏀", url: "https://vercel.app" },
+            { title: "BitLife Simulator", cat: "Life Strategy", icon: "💼", url: "https://vercel.app" }
+        ];
 
-        searchInput.addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            cards.forEach(card => {
-                const title = card.querySelector('.game-title').textContent.toLowerCase();
-                if(title.includes(val)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+        const grid = document.getElementById('grid');
+
+        // Loop engine that physically builds your dashboard rows dynamically
+        function loadGrid(items) {
+            grid.innerHTML = "";
+            items.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.onclick = () => launchGame(game.title, game.url);
+                card.innerHTML = `
+                    <div class="thumbnail-viewport">${game.icon}</div>
+                    <div class="game-info">
+                        <p class="game-title">${game.title}</p>
+                        <p class="game-category">${game.cat}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
             });
+        }
+
+        // Search engine logic loop
+        document.getElementById('search').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = gameDatabase.filter(g => g.title.toLowerCase().includes(query));
+            loadGrid(filtered);
         });
 
-        function launchModule(id) {
-            console.log("Ignition for database package: " + id);
-            // iFrame deployment loops will plug straight here
+        function launchGame(title, url) {
+            document.getElementById('currentPlayingTitle').textContent = "Assignment: " + title;
+            document.getElementById('gameFrame').src = url;
+            document.getElementById('gameOverlay').style.display = 'block';
         }
+
+        function closeGame() {
+            document.getElementById('gameOverlay').style.display = 'none';
+            document.getElementById('gameFrame').src = "";
+        }
+
+        // Initial launch initialization
+        loadGrid(gameDatabase);
     </script>
 </body>
 </html>
