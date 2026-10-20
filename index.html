@@ -1,25 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link rel="stylesheet" href="config/main.css" />
-    <script src="config/main.js" type="module"></script>
-  </head>
-  <body>
-    <div class="center">
-      <h1 id="title"></h1>
-      <p id="subtitle"></p>
-    </div>
-    <div class="center">
-      <input type="text" id="searchInput" placeholder="Search games" />
-    </div>
-    <div id="gamesContainer"></div>
-    <div class="footer">
-      <a style="font-weight: 700">a site by
-      </a><a style="font-weight: 700" class="link" href="https://dsc.gg/parcoil">parcoil network</a>
-    </div>
-  </body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Masked title to bypass automatic GoGuardian trigger bots -->
+    <title>Grade 8 Mathematics Unified Curriculum Sync Portal</title>
+    <style>
+        :root {
+            --bg-main: #090a0f;
+            --bg-card: #121420;
+            --bg-card-hover: #1c1f32;
+            --accent-glow: #5865f2;
+            --text-primary: #ffffff;
+            --text-secondary: #949ba4;
+        }
 
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Top Navigation Dashboard Console */
+        nav {
+            background-color: rgba(18, 20, 32, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #5865f2, #8592ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* High-Performance Real-Time Filter Bar */
+        .search-container {
+            position: relative;
+            width: 350px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 10px 16px;
+            background-color: #1a1d2e;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-bar:focus {
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
+        }
+
+        /* Main Workspace Content Layout */
+        .main-container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 40px;
+        }
+
+        /* Premium NitroPay/Playwire Advertisement Asset Allocation */
+        .ad-banner-placement {
+            background-color: var(--bg-card);
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            margin: 0 auto 40px auto;
+            border-radius: 8px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* High-End Streaming Catalog Grid */
+        .streaming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-glow);
+            box-shadow: 0 12px 24px rgba(88, 101, 242, 0.15);
+        }
+
+        .thumbnail-viewport {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(135deg, #1e2238, #121420);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            transition: transform 0.2s ease;
+        }
+
+        .game-card:hover .thumbnail-viewport {
+            transform: scale(1.05);
+        }
+
+        .game-info {
+            padding: 12px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .game-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 4px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-category {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">math8.pro // core</div>
+        <div class="search-container">
+            <input type="text" class="search-bar" id="gameSearch" placeholder="Search streaming catalog..." autocomplete="off">
+        </div>
+    </nav>
+
+    <div class="main-container">
+        
+        <!-- Premium Global Advertisement Slot Pipeline -->
+        <div class="ad-banner-placement">
+            [PREMIUM ADVERTISEMENT CONSOLE SLOT]
+        </div>
+
+        <p class="section-title">Trending Catalog Modules</p>
+
+        <!-- Streaming Arcade Node Catalog Matrix -->
+        <div class="streaming-grid" id="arcadeGrid">
+            
+            <div class="game-card" onclick="launchModule('1v1')">
+                <div class="thumbnail-viewport">🎯</div>
+                <div class="game-info">
+                    <p class="game-title">1v1.LOL</p>
+                    <p class="game-category">Esports / Action</p>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="launchModule('retro-bowl')">
+                <div class="thumbnail-viewport">🏈</div>
+                <div class="game-info">
+                    <p class="game-title">Retro Bowl Classic</p>
+                    <p class="game-category">Sports Sim</p>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="launchModule('slope')">
+                <div class="thumbnail-viewport">🟢</div>
+                <div class="game-info">
+                    <p class="game-title">Slope Engine</p>
+                    <p class="game-category">Physics Arcade</p>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="launchModule('bitlife')">
+                <div class="thumbnail-viewport">💼</div>
+                <div class="game-info">
+                    <p class="game-title">BitLife Sim</p>
+                    <p class="game-category">Life Simulator</p>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="launchModule('2048')">
+                <div class="thumbnail-viewport">🔢</div>
+                <div class="game-info">
+                    <p class="game-title">2048 Engine</p>
+                    <p class="game-category">Logic Core</p>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="launchModule">
+                <div class="thumbnail-viewport">🧗</div>
+                <div class="game-info">
+                    <p class="game-title">Getting Over It</p>
+                    <p class="game-category">Physics Rage</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Real-Time UI Engine Search Filter Functionality
+        const searchInput = document.getElementById('gameSearch');
+        const cards = document.querySelectorAll('.game-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const title = card.querySelector('.game-title').textContent.toLowerCase();
+                if(title.includes(val)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        function launchModule(id) {
+            console.log("Ignition for database package: " + id);
+            // iFrame deployment loops will plug straight here
+        }
+    </script>
+</body>
+</html>
