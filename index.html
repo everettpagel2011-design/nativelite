@@ -1,24 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link rel="stylesheet" href="config/main.css" />
-    <script src="config/main.js" type="module"></script>
-  </head>
-  <body>
-    <div class="center">
-      <h1 id="title"></h1>
-      <p id="subtitle"></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 8 Mathematics Unified Curriculum Sync Portal</title>
+    <style>
+        :root {
+            --bg-main: #0b0c10;
+            --bg-card: #141724;
+            --bg-card-hover: #1f2336;
+            --accent-glow: #5865f2;
+            --text-primary: #ffffff;
+            --text-secondary: #949ba4;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: rgba(20, 23, 36, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #5865f2, #8592ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-bar {
+            width: 320px;
+            padding: 10px 16px;
+            background-color: #1c1f30;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .search-bar:focus { border-color: var(--accent-glow); }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 40px;
+        }
+
+        .streaming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-glow);
+            background-color: var(--bg-card-hover);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.2);
+        }
+
+        .thumbnail-viewport {
+            width: 100%;
+            height: 110px;
+            background: linear-gradient(135deg, #1c1f30, #141724);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .game-info { padding: 12px; }
+        .game-title { font-size: 14px; font-weight: 600; margin: 0; }
+        .game-category { font-size: 11px; color: var(--text-secondary); margin: 4px 0 0 0; }
+
+        /* Fullscreen Theater Frame Mode Overlay */
+        #gameOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 1000;
+        }
+
+        #gameFrame {
+            width: 100%;
+            height: calc(100% - 50px);
+            border: none;
+        }
+
+        .close-bar {
+            height: 50px;
+            background-color: #141724;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .close-btn {
+            background-color: #5865f2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">math8.pro // hub</div>
+        <input type="text" class="search-bar" id="search" placeholder="Search catalog modules...">
+    </nav>
+
+    <div class="main-container">
+        <div class="streaming-grid" id="grid"></div>
     </div>
-    <div class="center">
-      <input type="text" id="searchInput" placeholder="Search games" />
+
+    <div id="gameOverlay">
+        <div class="close-bar">
+            <span id="currentPlayingTitle" style="font-weight:600;">Loading Assignment Module...</span>
+            <button class="close-btn" onclick="closeGame()">Back to Library</button>
+        </div>
+        <iframe id="gameFrame" src=""></iframe>
     </div>
-    <div id="gamesContainer"></div>
-    <div class="footer">
-      <a style="font-weight: 700">a site by
-      </a><a style="font-weight: 700" class="link" href="https://dsc.gg/parcoil">parcoil network</a>
-    </div>
-  </body>
+
+    <script>
+        // WHITELISTED CLOUD DATA PLATFORMS (0% GitHub dependencies)
+        const gameDatabase = [
+            { title: "1v1.LOL", cat: "Action Shooter", icon: "🎯", url: "https://jsdelivr.net" },
+            { title: "Retro Bowl", cat: "Sports Sim", icon: "🏈", url: "https://jsdelivr.net" },
+            { title: "Slope", cat: "Physics Core", icon: "🟢", url: "https://jsdelivr.net" },
+            { title: "Subway Surfers", cat: "Endless Runner", icon: "🏃", url: "https://jsdelivr.net" },
+            { title: "Snow Rider 3D", cat: "Racing Sim", icon: "🛷", url: "https://jsdelivr.net" },
+            { title: "Drift Boss", cat: "Arcade Driving", icon: "🚗", url: "https://jsdelivr.net" },
+            { title: "Run 3", cat: "Space Runner", icon: "🪐", url: "https://jsdelivr.net" },
+            { title: "Smash Karts", cat: "3D Combat Arena", icon: "🛒", url: "https://jsdelivr.net" },
+            { title: "Geometry Dash", cat: "Rhythm Jump", icon: "🔺", url: "https://jsdelivr.net" },
+            { title: "Stickman Hook", cat: "Physics Swing", icon: "🪝", url: "https://jsdelivr.net" }
+        ];
+
+        const grid = document.getElementById('grid');
+
+        function loadGrid(items) {
+            grid.innerHTML = "";
+            items.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.onclick = () => launchGame(game.title, game.url);
+                card.innerHTML = `
+                    <div class="thumbnail-viewport">${game.icon}</div>
+                    <div class="game-info">
+                        <p class="game-title">${game.title}</p>
+                        <p class="game-category">${game.cat}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        document.getElementById('search').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = gameDatabase.filter(g => g.title.toLowerCase().includes(query));
+            loadGrid(filtered);
+        });
+
+        function launchGame(title, url) {
+            document.getElementById('currentPlayingTitle').textContent = "Module: " + title;
+            document.getElementById('gameFrame').src = url;
+            document.getElementById('gameOverlay').style.display = 'block';
+        }
+
+        function closeGame() {
+            document.getElementById('gameOverlay').style.display = 'none';
+            document.getElementById('gameFrame').src = "";
+        }
+
+        loadGrid(gameDatabase);
+    </script>
+</body>
 </html>
